@@ -3,63 +3,45 @@ import { useState } from "react";
 import * as math from "mathjs";
 
 function App() {
+	// State to hold the displayed text
 	const [displayText, setDisplayText] = useState("0");
-	const [resultDisplayed, setResultDisplayed] = useState(false);
 
+	// Function to handle button clicks
 	const handleButtonClick = (value) => {
-		if (resultDisplayed) {
-			if (value === "DEL") {
-				setDisplayText("0");
-				setResultDisplayed(false);
-			} else if (value === "RESET") {
-				setDisplayText("0");
-				setResultDisplayed(false);
-			} else if (value === "=") {
-				// Do nothing if = is pressed after the result
-			} else {
-				setDisplayText(formatDisplayText(displayText + value));
-				setResultDisplayed(false);
+		if (value === "DEL") {
+			// Delete last character
+			setDisplayText(displayText.slice(0, -1));
+		} else if (value === "RESET") {
+			// Reset the display
+			setDisplayText("0");
+		} else if (value === "=") {
+			try {
+				// Remove commas, evaluate the expression, and add commas back
+				const expressionWithoutCommas = displayText.replace(/,/g, "");
+				const result = math.evaluate(expressionWithoutCommas);
+				setDisplayText(result.toLocaleString()); // Adding commas back here
+			} catch (error) {
+				// Display "Error" in case of an evaluation error
+				setDisplayText("Error");
 			}
 		} else {
-			if (value === "DEL") {
-				setDisplayText(displayText.slice(0, -1));
-			} else if (value === "RESET") {
-				setDisplayText("0");
-			} else if (value === "=") {
-				try {
-					const result = math.evaluate(displayText);
-					setDisplayText(formatDisplayText(result.toString()));
-					setResultDisplayed(true);
-				} catch (error) {
-					setDisplayText("Error");
+			// Append the clicked value to the display text with formatting
+			setDisplayText((prevText) => {
+				// Handle initial input, prevent leading zeros
+				if (prevText === "0" && value !== "." && value !== "0") {
+					return value;
+				} else if (value === "." && prevText.includes(".")) {
+					return prevText; // Avoid multiple decimal points
+				} else {
+					const newValue = prevText + value;
+					return newValue
+						.replace(/,/g, "")
+						.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				}
-			} else {
-				setDisplayText(
-					formatDisplayText(displayText === "0" ? value : displayText + value)
-				);
-			}
+			});
 		}
 	};
 
-	//add a comma after every 3 digits
-	const formatDisplayText = (text) => {
-		const textArray = text.split("");
-		let formattedText = "";
-		let counter = 0;
-		for (let i = textArray.length - 1; i >= 0; i--) {
-			if (counter === 3) {
-				formattedText = "," + formattedText;
-				counter = 0;
-			}
-			formattedText = textArray[i] + formattedText;
-			counter++;
-		}
-		return formattedText;
-
-		// return text;
-	};
-
-	
 	return (
 		<div>
 			<div className="container">
