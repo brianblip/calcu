@@ -62,6 +62,7 @@ html {
 	line-height: 1.4;
 	background-color: var(--very-dark-blue);
 	color: var(--theme1-text);
+	font-family: "Spartan", sans-serif;
 }
 
 body {
@@ -109,7 +110,6 @@ body {
 }
 
 .calculator-display {
-	font-family: "League Spartan", sans-serif;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
@@ -128,7 +128,6 @@ body {
 }
 
 .calculator-keys {
-	font-family: "League Spartan", sans-serif;
 	display: grid;
 	/*make the calculator keys box smaller*/
 	padding: 2rem;
@@ -148,7 +147,10 @@ body {
 		"decimal zero divide multiply"
 		"reset reset equals equals";
 }
-/*make the size of the calculator keys equally aside from the reset and equal keys*/
+.calculator-keys,
+.calculator-display {
+	font-family: "League Spartan", sans-serif;
+}
 
 .calculator-keys > * {
 	border: none;
