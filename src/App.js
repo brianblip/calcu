@@ -105,6 +105,10 @@ function App() {
 						<button className={`number`} onClick={() => handleButtonClick("6")}>
 							6
 						</button>
+						<button className={`number`} onClick={() => handleButtonClick("+")}>
+							+
+						</button>
+
 						<button className={`number`} onClick={() => handleButtonClick("1")}>
 							1
 						</button>
@@ -114,6 +118,9 @@ function App() {
 						<button className={`number`} onClick={() => handleButtonClick("3")}>
 							3
 						</button>
+						<button className={`number`} onClick={() => handleButtonClick("-")}>
+							-
+						</button>
 						<button className={`number`} onClick={() => handleButtonClick("0")}>
 							0
 						</button>
@@ -121,13 +128,7 @@ function App() {
 						<button className="del" onClick={() => handleButtonClick("DEL")}>
 							DEL
 						</button>
-						<button className={`number`} onClick={() => handleButtonClick("+")}>
-							+
-						</button>
 
-						<button className={`number`} onClick={() => handleButtonClick("-")}>
-							-
-						</button>
 						<button className={`number`} onClick={() => handleButtonClick(".")}>
 							.
 						</button>
