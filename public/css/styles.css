@@ -14,7 +14,7 @@
 	--theme1-key-equal: hsl(6, 63%, 50%);
 	--theme1-key-equal-background: hsl(6, 70%, 34%);
 	--theme1-key-background-toggle: hsl(20, 25%, 89%);
-	--theme1-key-shadow-toggle1: hsl(28, 16%, 65%);
+	--theme1-key-shadow-toggle: hsl(28, 16%, 65%);
 
 	/*Text colors*/
 	--theme1-text: hsl(0, 0%, 100%);
@@ -23,8 +23,9 @@
 	/*Theme 2*/
 
 	/*Backgorund colors*/
-	--light-gray: hsl(0, 0%, 93%);
-	--very-light-gray: hsl(0, 0%, 90%);
+	--light-gray: hsl(0, 0%, 90%);
+	--grayish-red: hsl(0, 5%, 81%);
+	--very-light-gray: hsl(0, 0%, 93%);
 
 	/*Keys*/
 	--theme2-key-reset: hsl(185, 42%, 37%);
@@ -32,7 +33,7 @@
 	--theme2-key-equal: hsl(25, 98%, 40%);
 	--theme2-key-equal-background: hsl(25, 99%, 27%);
 	--theme2-key-background-toggle: hsl(45, 7%, 89%);
-	--theme2-key-shadow-toggle1: hsl(35, 11%, 61%);
+	--theme2-key-shadow-toggle: hsl(35, 11%, 61%);
 
 	/*Text colors*/
 	--theme2-text: hsl(60, 10%, 19%);
@@ -50,12 +51,183 @@
 	--theme3-key-equal: hsl(176, 100%, 44%);
 	--theme3-key-equal-background: hsl(177, 92%, 70%);
 	--theme3-key-background-toggle: hsl(268, 47%, 21%);
-	--theme3-key-shadow-toggle1: hsl(290, 70%, 36%);
+	--theme3-key-shadow-toggle: hsl(290, 70%, 36%);
 
 	/*Text colors*/
 	--theme3-text: hsl(52, 100%, 62%);
 	--theme3-keys-color: hsl(0, 0%, 100%);
-	--theme-text-toggle1: hsl(198, 20%, 13%);
+	--theme-text-toggle: hsl(198, 20%, 13%);
+}
+
+.calculator-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 2rem;
+	height: 10vh;
+}
+
+/* put the h3 to the end of the calculator-display */
+.title h4 {
+	margin-left: -2rem;
+}
+
+.theme-controls {
+	display: flex;
+	font-size: 10px;
+	margin-top: 10px; /* Adjust margin-top */
+	margin-right: -10px; /* Adjust margin-right */
+	padding-right: 10px; /* Add padding-right */
+}
+
+.theme-chooser {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: var(--very-dark-blue-toggle);
+	border-radius: 100px;
+	padding: 5px;
+	margin: 10px -30px 0 -200px;
+}
+
+.theme-toggle {
+	background-color: var(--theme1-key-background-toggle);
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	margin-right: 10px;
+	cursor: pointer;
+	transition: margin 0.3s ease-in-out;
+}
+
+.theme1-toggle {
+	background-color: var(--very-dark-blue-toggle);
+}
+
+.theme2-toggle {
+	background-color: var(--light-gray);
+}
+
+.theme3-toggle {
+	background-color: var(--very-dark-violet-toggle);
+}
+
+body.theme1 {
+	background-color: var(--very-dark-blue);
+	color: var(--theme1-text);
+}
+
+body.theme2 {
+	background-color: var(--light-gray);
+	color: var(--theme2-text);
+}
+
+body.theme3 {
+	background-color: var(--very-dark-violet);
+	color: var(--theme3-text);
+}
+
+/* change the color of the className baased on the theme */
+body.theme1 .calculator-display {
+	background-color: var(--very-dark-blue-screen);
+}
+
+body.theme2 .calculator-display {
+	background-color: var(--very-light-gray);
+}
+
+body.theme3 .calculator-display {
+	background-color: var(--very-dark-violet-toggle);
+}
+
+body.theme1 .calculator-keys {
+	background-color: var(--very-dark-blue-toggle);
+}
+
+body.theme2 .calculator-keys {
+	background-color: var(--grayish-red);
+}
+
+body.theme3 .calculator-keys {
+	background-color: var(--very-dark-violet-toggle);
+}
+
+/*background shadow for the keys */
+
+body.theme1 .calculator-keys > * {
+	box-shadow: 0px 2px var(--theme1-key-shadow-toggle);
+}
+
+body.theme2 .calculator-keys > * {
+	box-shadow: 0px 2px var(--theme2-key-shadow-toggle);
+}
+
+body.theme3 .calculator-keys > * {
+	box-shadow: 0px 2px var(--theme3-key-shadow-toggle);
+}
+
+/* change the color of the delete,reset and equal keys based on the theme */
+
+body.theme1 .del {
+	background-color: var(--theme1-key-reset);
+	color: var(--theme1-text);
+}
+
+body.theme2 .del {
+	background-color: var(--theme2-key-reset-background);
+	color: var(--theme2-keys-color);
+}
+
+body.theme3 .del {
+	background-color: var(--theme3-key-reset-background);
+	color: var(--theme3-keys-color);
+}
+
+body.theme1 .reset {
+	background-color: var(--theme1-key-reset);
+	color: var(--theme1-text);
+}
+
+body.theme2 .reset {
+	background-color: var(--theme2-key-reset-background);
+	color: var(--theme2-keys-color);
+}
+
+body.theme3 .reset {
+	background-color: var(--theme3-key-reset-background);
+	color: var(--theme3-keys-color);
+}
+
+body.theme1 .equals {
+	background-color: var(--theme1-key-equal);
+	color: var(--theme1-text);
+}
+
+body.theme2 .equals {
+	background-color: var(--theme2-key-equal-background);
+	color: var(--theme2-keys-color);
+}
+
+body.theme3 .equals {
+	background-color: var(--theme3-key-equal-background);
+	color: var(--theme-text-toggle);
+}
+
+/* change the color of the numbers based on the theme */
+
+body.theme1 .number {
+	background-color: var(--theme1-key-background-toggle);
+	color: var(--theme1-keys-color);
+}
+
+body.theme2 .number {
+	background-color: var(--theme2-key-background-toggle);
+	color: var(--theme2-text);
+}
+
+body.theme3 .number {
+	background-color: var(--theme3-key-background-toggle);
+	color: var(--theme3-text);
 }
 
 html {
@@ -74,41 +246,6 @@ body {
 	height: 100vh;
 }
 
-.calc-heading {
-	font-size: 20px;
-	color: var(--theme1-text);
-	text-align: left;
-}
-
-.theme-heading {
-	font-size: 20px;
-	color: var(--theme1-text);
-	text-align: right;
-	margin-left: auto;
-}
-
-/* Add the styles for the toggle buttons */
-.theme-toggle {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	margin-top: 10px;
-}
-
-.toggle-button {
-	background-color: var(--theme1-key-background-toggle);
-	color: var(--theme1-keys-color);
-	border: none;
-	padding: 8px 16px;
-	margin-left: 5px;
-	cursor: pointer;
-}
-
-/* Add hover effect for toggle buttons */
-.toggle-button:hover {
-	background-color: var(--theme1-key-shadow-toggle1);
-}
-
 .calculator-display {
 	font-weight: 700;
 	display: flex;
@@ -118,10 +255,8 @@ body {
 	border: none;
 	outline: none;
 	border-radius: 5px;
-	background-color: var(--very-dark-blue-screen);
-	color: var(--theme1-text);
-	width: 30rem;
-	height: 5rem;
+	width: 28rem;
+	height: 4rem;
 	padding: 0.75rem 1rem;
 	overflow: hidden; /* Hide overflow */
 	text-overflow: ellipsis; /* Display "..." if text overflows */
@@ -131,14 +266,13 @@ body {
 .calculator-keys {
 	display: grid;
 	padding: 2rem;
-	height: 22rem;
+	height: 25rem;
 	margin-top: 20px;
 	border: none;
 	outline: none;
 	border-radius: 5px;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 1rem;
-	background-color: var(--very-dark-blue-toggle);
+	gap: 1.5rem;
 	grid-template-areas:
 		"seven eight nine del"
 		"four five six plus"
@@ -150,7 +284,7 @@ body {
 button {
 	font-family: inherit;
 	font-weight: 700;
-	font-size: 32px;
+	font-size: 25px;
 }
 
 .calculator-keys > * {
@@ -158,7 +292,6 @@ button {
 	outline: none;
 	cursor: pointer;
 	border-radius: 5px;
-	background-color: var(--theme1-key-background-toggle);
 }
 
 .one {
@@ -214,22 +347,16 @@ button {
 .reset {
 	grid-area: reset;
 	color: var(--theme1-text);
-	background-color: var(--theme1-key-reset);
-	box-shadow: 0 2px var(--theme1-key-reset-background);
 }
 
 .equals {
 	grid-area: equals;
 	color: var(--theme1-text);
-	background-color: var(--theme1-key-equal);
-	box-shadow: 0 2px var(--theme1-key-equal-background);
 }
 
 .del {
 	grid-area: del;
 	color: var(--theme1-text);
-	background-color: var(--theme1-key-reset);
-	box-shadow: 0 2px var(--theme1-key-reset-background);
 }
 
 .decimal {
@@ -266,53 +393,62 @@ button {
 	color: hsl(228, 45%, 44%);
 }
 
-/* Default styles */
-
-/* Styles for screens with a maximum width of 768px */
-@media (max-width: 768px) {
-	body {
-		font-size: 18px; /* Adjust font size for smaller screens */
-	}
-
-	.calculator-keys {
-		padding: 1rem; /* Adjust padding for smaller screens */
-		height: auto; /* Let the keys box adjust its height */
-		grid-template-columns: repeat(
-			4,
-			1fr
-		); /* Adjust grid columns for smaller screens */
-		gap: 1rem; /* Reduce gap between keys */
+/* Common styles */
+@media screen and (max-width: 768px) {
+	.theme-controls {
+		margin-right: 50px;
+		margin-top: 10px; /* Remove top margin */
 	}
 
 	.calculator-display {
-		font-size: 2rem; /* Adjust font size for display */
-		height: 3rem; /* Adjust height for display */
-		width: 20rem; /* Adjust width for display */
+		font-size: 2rem;
+		width: 25rem;
 	}
 
-	/* Adjust individual key styles as needed */
-	/* For example: */
-	.reset,
-	.equals,
-	.del {
-		padding: 6px 12px; /* Adjust padding for smaller keys */
+	.calculator-keys {
+		height: 25rem;
+	}
+
+	.calculator-keys > * {
+		font-size: 2rem;
 	}
 }
 
-/* Styles for screens with a maximum width of 320px */
-@media (max-width: 320px) {
-	body {
-		font-size: 16px; /* Further reduce font size for smaller screens */
+@media screen and (max-width: 500px) {
+	.theme-controls {
+		margin-right: 100px;
+		margin-top: 10px; /* Remove top margin */
+	}
+	.calculator-display {
+		font-size: 1.5rem;
+		width: 20rem;
 	}
 
 	.calculator-keys {
-		padding: 0.5rem; /* Further reduce padding for smaller screens */
-		gap: 0.5rem; /* Further reduce gap between keys */
+		height: 20rem;
 	}
 
+	.calculator-keys > * {
+		font-size: 1.5rem;
+	}
+}
+
+@media screen and (max-width: 374px) {
+	.theme-controls {
+		margin-right: 40px;
+		margin-top: 0; /* Remove top margin */
+	}
 	.calculator-display {
-		font-size: 1.5rem; /* Further reduce font size for display */
-		height: 2.5rem; /* Further reduce height for display */
-		width: 15rem; /* Further reduce width for display */
+		font-size: 2rem;
+		width: 18rem; /* Adjusted width */
+		padding: 1rem; /* Adjusted padding */
+	}
+
+	.calculator-keys {
+		height: 20rem;
+	}
+
+	.calculator-keys > * {
+		font-size: 1.2rem;
 	}
 }

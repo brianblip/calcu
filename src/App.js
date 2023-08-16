@@ -5,6 +5,12 @@ import * as math from "mathjs";
 function App() {
 	// State to hold the displayed text
 	const [displayText, setDisplayText] = useState("0");
+	const [theme, setTheme] = useState("theme1"); // State to track the selected theme
+
+	const handleThemeChange = (selectedTheme) => {
+		setTheme(selectedTheme);
+		document.body.className = selectedTheme;
+	};
 
 	// Function to handle button clicks
 	const handleButtonClick = (value) => {
@@ -45,58 +51,91 @@ function App() {
 	return (
 		<div>
 			<div className="container">
+				<div className="calculator-header">
+					<div className="title">
+						<h4>calc</h4>
+					</div>
+
+					<div className="theme-controls">
+						<h2>THEME</h2>
+					</div>
+					<div className="theme-chooser">
+						<div
+							className={`theme-toggle ${theme === "theme1" ? "active" : ""} `}
+							onClick={() => handleThemeChange("theme1")}
+						>
+							<span className="circle"></span>
+						</div>
+						<div
+							className={`theme-toggle ${theme === "theme2" ? "active" : ""} `}
+							onClick={() => handleThemeChange("theme2")}
+						>
+							<span className="circle"></span>
+						</div>
+						<div
+							className={`theme-toggle ${theme === "theme3" ? "active" : ""} `}
+							onClick={() => handleThemeChange("theme3")}
+						>
+							<span className="circle"></span>
+						</div>
+					</div>
+				</div>
+
 				<div className="calculator">
 					<div className="calculator-display">{displayText}</div>
 					<div className="calculator-keys">
 						{/* Buttons for digits */}
-						<button className="seven" onClick={() => handleButtonClick("7")}>
+
+						<button className={`number`} onClick={() => handleButtonClick("7")}>
 							7
 						</button>
-						<button className="eight" onClick={() => handleButtonClick("8")}>
+						<button className={`number`} onClick={() => handleButtonClick("8")}>
 							8
 						</button>
-						<button className="nine" onClick={() => handleButtonClick("9")}>
+						<button className={`number`} onClick={() => handleButtonClick("9")}>
 							9
 						</button>
 
+						<button className={`number`} onClick={() => handleButtonClick("4")}>
+							4
+						</button>
+						<button className={`number`} onClick={() => handleButtonClick("5")}>
+							5
+						</button>
+						<button className={`number`} onClick={() => handleButtonClick("6")}>
+							6
+						</button>
+						<button className={`number`} onClick={() => handleButtonClick("1")}>
+							1
+						</button>
+						<button className={`number`} onClick={() => handleButtonClick("2")}>
+							2
+						</button>
+						<button className={`number`} onClick={() => handleButtonClick("3")}>
+							3
+						</button>
+						<button className={`number`} onClick={() => handleButtonClick("0")}>
+							0
+						</button>
 						{/* Other buttons */}
 						<button className="del" onClick={() => handleButtonClick("DEL")}>
 							DEL
 						</button>
-						<button className="four" onClick={() => handleButtonClick("4")}>
-							4
-						</button>
-						<button className="five" onClick={() => handleButtonClick("5")}>
-							5
-						</button>
-						<button className="six" onClick={() => handleButtonClick("6")}>
-							6
-						</button>
-						<button className="plus" onClick={() => handleButtonClick("+")}>
+						<button className={`number`} onClick={() => handleButtonClick("+")}>
 							+
 						</button>
-						<button className="one" onClick={() => handleButtonClick("1")}>
-							1
-						</button>
-						<button className="two" onClick={() => handleButtonClick("2")}>
-							2
-						</button>
-						<button className="three" onClick={() => handleButtonClick("3")}>
-							3
-						</button>
-						<button className="minus" onClick={() => handleButtonClick("-")}>
+
+						<button className={`number`} onClick={() => handleButtonClick("-")}>
 							-
 						</button>
-						<button className="decimal" onClick={() => handleButtonClick(".")}>
+						<button className={`number`} onClick={() => handleButtonClick(".")}>
 							.
 						</button>
-						<button className="zero" onClick={() => handleButtonClick("0")}>
-							0
-						</button>
-						<button className="divide" onClick={() => handleButtonClick("/")}>
+
+						<button className={`number`} onClick={() => handleButtonClick("/")}>
 							/
 						</button>
-						<button className="multiply" onClick={() => handleButtonClick("*")}>
+						<button className={`number`} onClick={() => handleButtonClick("*")}>
 							&times;
 						</button>
 						<button
