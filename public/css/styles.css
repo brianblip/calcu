@@ -67,7 +67,6 @@
 	height: 10vh;
 }
 
-/* put the h3 to the end of the calculator-display */
 .title h4 {
 	margin-left: -2rem;
 }
@@ -75,9 +74,7 @@
 .theme-controls {
 	display: flex;
 	font-size: 10px;
-	margin-top: 10px; /* Adjust margin-top */
-	margin-right: -10px; /* Adjust margin-right */
-	padding-right: 10px; /* Add padding-right */
+	margin-top: 10px;
 }
 
 .theme-chooser {
@@ -85,9 +82,13 @@
 	align-items: center;
 	justify-content: space-between;
 	background-color: var(--very-dark-blue-toggle);
+	transition: background-color 0.3s ease;
 	border-radius: 100px;
 	padding: 5px;
 	margin: 10px -30px 0 -200px;
+	width: 60px;
+	position: relative;
+	overflow: hidden; /* Hide overflow */
 }
 
 .theme-toggle {
@@ -95,21 +96,50 @@
 	width: 15px;
 	height: 15px;
 	border-radius: 50%;
-	margin-right: 10px;
 	cursor: pointer;
-	transition: margin 0.3s ease-in-out;
+	transition: transform 0.5s ease;
+	opacity: 0;
+	position: relative;
 }
 
+.calculator-keys > *:hover {
+	filter: brightness(130%);
+}
+
+.theme-numbers {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	position: absolute;
+	margin-top: -45px;
+	margin-left: 378px;
+	font-size: 20px;
+}
+
+.theme-number1 {
+	margin: 0 6px;
+}
+.theme-number2 {
+	margin: 0 9px;
+}
+.theme-number3 {
+	margin: 0 7px;
+}
+
+.theme-toggle.active {
+	transform: translateX(0.5px); /* Adjust the distance of the movement */
+	opacity: 1; /* Show active toggles */
+}
 .theme1-toggle {
-	background-color: var(--very-dark-blue-toggle);
+	background-color: var(--theme1-key-equal);
 }
 
 .theme2-toggle {
-	background-color: var(--light-gray);
+	background-color: var(--theme2-key-equal);
 }
 
 .theme3-toggle {
-	background-color: var(--very-dark-violet-toggle);
+	background-color: var(--theme3-key-equal);
 }
 
 body.theme1 {
@@ -154,16 +184,16 @@ body.theme3 .calculator-keys {
 
 /*background shadow for the keys */
 
-body.theme1 .calculator-keys > * {
-	box-shadow: 0px 2px var(--theme1-key-shadow-toggle);
+body.theme1 .calculator-keys .number {
+	box-shadow: 0px 4px var(--theme1-key-shadow-toggle);
 }
 
-body.theme2 .calculator-keys > * {
-	box-shadow: 0px 2px var(--theme2-key-shadow-toggle);
+body.theme2 .calculator-keys .number {
+	box-shadow: 0px 4px var(--theme2-key-shadow-toggle);
 }
 
-body.theme3 .calculator-keys > * {
-	box-shadow: 0px 2px var(--theme3-key-shadow-toggle);
+body.theme3 .calculator-keys .number {
+	box-shadow: 0px 4px var(--theme3-key-shadow-toggle);
 }
 
 /* change the color of the delete,reset and equal keys based on the theme */
@@ -171,46 +201,55 @@ body.theme3 .calculator-keys > * {
 body.theme1 .del {
 	background-color: var(--theme1-key-reset);
 	color: var(--theme1-text);
+	box-shadow: 0px 4px var(--theme1-key-reset-background);
 }
 
 body.theme2 .del {
-	background-color: var(--theme2-key-reset-background);
+	background-color: var(--theme2-key-reset);
 	color: var(--theme2-keys-color);
+	box-shadow: 0px 4px var(--theme2-key-reset-background);
 }
 
 body.theme3 .del {
-	background-color: var(--theme3-key-reset-background);
+	background-color: var(--theme3-key-reset);
 	color: var(--theme3-keys-color);
+	box-shadow: 0px 4px var(--theme3-key-reset-background);
 }
 
 body.theme1 .reset {
 	background-color: var(--theme1-key-reset);
 	color: var(--theme1-text);
+	box-shadow: 0px 4px var(--theme1-key-reset-background);
 }
 
 body.theme2 .reset {
-	background-color: var(--theme2-key-reset-background);
+	background-color: var(--theme2-key-reset);
 	color: var(--theme2-keys-color);
+	box-shadow: 0px 4px var(--theme2-key-reset-background);
 }
 
 body.theme3 .reset {
-	background-color: var(--theme3-key-reset-background);
+	background-color: var(--theme3-key-reset);
 	color: var(--theme3-keys-color);
+	box-shadow: 0px 4px var(--theme3-key-reset-background);
 }
 
 body.theme1 .equals {
 	background-color: var(--theme1-key-equal);
 	color: var(--theme1-text);
+	box-shadow: 0px 4px var(--theme1-key-equal-background);
 }
 
 body.theme2 .equals {
-	background-color: var(--theme2-key-equal-background);
+	background-color: var(--theme2-key-equal);
 	color: var(--theme2-keys-color);
+	box-shadow: 0px 4px var(--theme2-key-equal-background);
 }
 
 body.theme3 .equals {
-	background-color: var(--theme3-key-equal-background);
+	background-color: var(--theme3-key-equal);
 	color: var(--theme-text-toggle);
+	box-shadow: 0px 4px var(--theme3-key-equal-background);
 }
 
 /* change the color of the numbers based on the theme */
@@ -396,8 +435,7 @@ button {
 /* Common styles */
 @media screen and (max-width: 768px) {
 	.theme-controls {
-		margin-right: 50px;
-		margin-top: 10px; /* Remove top margin */
+		margin-top: 10px;
 	}
 
 	.calculator-display {
@@ -412,12 +450,15 @@ button {
 	.calculator-keys > * {
 		font-size: 2rem;
 	}
+	.theme-numbers {
+		margin-left: 330px;
+	}
 }
 
 @media screen and (max-width: 500px) {
 	.theme-controls {
 		margin-right: 100px;
-		margin-top: 10px; /* Remove top margin */
+		margin-top: 10px;
 	}
 	.calculator-display {
 		font-size: 1.5rem;
@@ -431,17 +472,20 @@ button {
 	.calculator-keys > * {
 		font-size: 1.5rem;
 	}
+
+	.theme-numbers {
+		margin-left: 255px;
+	}
 }
 
 @media screen and (max-width: 374px) {
 	.theme-controls {
-		margin-right: 40px;
-		margin-top: 0; /* Remove top margin */
+		margin-top: 0;
 	}
 	.calculator-display {
 		font-size: 2rem;
-		width: 18rem; /* Adjusted width */
-		padding: 1rem; /* Adjusted padding */
+		width: 18rem;
+		padding: 1rem;
 	}
 
 	.calculator-keys {
@@ -450,5 +494,8 @@ button {
 
 	.calculator-keys > * {
 		font-size: 1.2rem;
+	}
+	.theme-numbers {
+		margin-left: 220px;
 	}
 }
